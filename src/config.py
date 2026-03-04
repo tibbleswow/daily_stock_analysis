@@ -73,7 +73,7 @@ class Config:
     gemini_api_key: Optional[str] = None
     gemini_model: str = "gemini-3-flash-preview"  # 主模型
     gemini_model_fallback: str = "gemini-2.5-flash"  # 备选模型
-    gemini_temperature: float = 0.7  # 温度参数（0.0-2.0，控制输出随机性，默认0.7）
+    gemini_temperature: float = 1.0  # 温度参数（0.0-2.0，控制输出随机性，默认0.7）
 
     # Gemini API 请求配置（防止 429 限流）
     gemini_request_delay: float = 2.0  # 请求间隔（秒）
@@ -83,7 +83,7 @@ class Config:
     # Anthropic Claude API（备选，当 Gemini 不可用时使用）
     anthropic_api_key: Optional[str] = None
     anthropic_model: str = "claude-3-5-sonnet-20241022"  # Claude model name
-    anthropic_temperature: float = 0.7  # Anthropic temperature (0.0-1.0, default 0.7)
+    anthropic_temperature: float = 1.0  # Anthropic temperature (0.0-1.0, default 0.7)
     anthropic_max_tokens: int = 8192  # Max tokens for Anthropic responses
 
     # OpenAI 兼容 API（备选，当 Gemini/Anthropic 不可用时使用）
@@ -461,13 +461,13 @@ class Config:
             gemini_api_key=os.getenv('GEMINI_API_KEY'),
             gemini_model=os.getenv('GEMINI_MODEL', 'gemini-3-flash-preview'),
             gemini_model_fallback=os.getenv('GEMINI_MODEL_FALLBACK', 'gemini-2.5-flash'),
-            gemini_temperature=float(os.getenv('GEMINI_TEMPERATURE', '0.7')),
+            gemini_temperature=float(os.getenv('GEMINI_TEMPERATURE', '1.0')),
             gemini_request_delay=float(os.getenv('GEMINI_REQUEST_DELAY', '2.0')),
             gemini_max_retries=int(os.getenv('GEMINI_MAX_RETRIES', '5')),
             gemini_retry_delay=float(os.getenv('GEMINI_RETRY_DELAY', '5.0')),
             anthropic_api_key=os.getenv('ANTHROPIC_API_KEY'),
             anthropic_model=os.getenv('ANTHROPIC_MODEL', 'claude-3-5-sonnet-20241022'),
-            anthropic_temperature=float(os.getenv('ANTHROPIC_TEMPERATURE', '0.7')),
+            anthropic_temperature=float(os.getenv('ANTHROPIC_TEMPERATURE', '1.0')),
             anthropic_max_tokens=int(os.getenv('ANTHROPIC_MAX_TOKENS', '8192')),
             # AIHubmix is the preferred OpenAI-compatible provider (one key, all models, no VPN required).
             # Within the OpenAI-compatible layer: AIHUBMIX_KEY takes priority over OPENAI_API_KEY.
