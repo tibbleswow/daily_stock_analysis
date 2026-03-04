@@ -299,7 +299,7 @@ class MarketAnalyzer:
             logger.info("[大盘] 调用大模型生成复盘报告...")
             
             generation_config = {
-                'temperature': 0.7,
+                'temperature': 1.0,
                 'max_output_tokens': 2048,
             }
             
